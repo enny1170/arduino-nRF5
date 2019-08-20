@@ -92,11 +92,7 @@ void loop( void ) ;
 
 #define bit(b) (1UL << (b))
 
-#ifdef NRF52
-#define digitalPinToPort(P)        ((g_ADigitalPinMap[P] < 32 ? NRF_P0 : NRF_P1))
-#else
-#define digitalPinToPort(P)        ( &(NRF_GPIO[P]) )
-#endif
+#define digitalPinToPort(P)        ((g_ADigitalPinMap[(uint32_t)P] < 32 ? NRF_P0 : NRF_P1))
 #define digitalPinToBitMask(P)     ( 1 << g_ADigitalPinMap[P] )
 //#define analogInPinToBit(P)        ( )
 #define portOutputRegister(port)   ( &(port->OUTSET) )
